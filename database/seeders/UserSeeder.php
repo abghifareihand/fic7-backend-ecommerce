@@ -16,10 +16,27 @@ class UserSeeder extends Seeder
     {
         User::factory(5)->create();
         User::factory()->create([
-            'name'=>'Abghi Fareihan',
-            'email'=>'abghi@gmail.com',
+            'name'=>'Bang User',
+            'email'=>'user@gmail.com',
             'email_verified_at'=> now(),
-            'password'=> Hash::make('123456'),
+            'role'=> 'user',
+            'password'=> Hash::make('user123'),
+
+        ]);
+        User::factory()->create([
+            'name'=>'Bang Admin',
+            'email'=>'admin@gmail.com',
+            'email_verified_at'=> now(),
+            'role'=> 'admin',
+            'password'=> Hash::make('admin123'),
+
+        ]);
+        User::factory()->create([
+            'name'=>'Bang Super Admin',
+            'email'=>'superadmin@gmail.com',
+            'email_verified_at'=> now(),
+            'role'=> 'superadmin',
+            'password'=> Hash::make('superadmin123'),
 
         ]);
     }
