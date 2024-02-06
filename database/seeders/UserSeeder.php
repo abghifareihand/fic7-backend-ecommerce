@@ -28,6 +28,8 @@ class UserSeeder extends Seeder
             'email'=>'admin@gmail.com',
             'email_verified_at'=> now(),
             'role'=> 'admin',
+            'phone'=> '628985454555',
+            'bio' => 'Flutter Developer',
             'password'=> Hash::make('admin123'),
 
         ]);
@@ -36,6 +38,8 @@ class UserSeeder extends Seeder
             'email'=>'superadmin@gmail.com',
             'email_verified_at'=> now(),
             'role'=> 'superadmin',
+            'phone'=> '628985454555',
+            'bio' => 'Laravel Developer',
             'password'=> Hash::make('superadmin123'),
 
         ]);

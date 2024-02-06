@@ -100,11 +100,10 @@
             </a>
             <div class="dropdown-menu dropdown-menu-right">
 
-                <a href="features-profile.html"
+                <a href="{{route('profile.edit')}}"
                     class="dropdown-item has-icon">
                     <i class="far fa-user"></i> Profile
                 </a>
-
                 <a href=""
                     class="dropdown-item has-icon text-danger"
                     onclick="event.preventDefault(); document.getElementById('logout-form').submit()">
