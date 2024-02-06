@@ -13,6 +13,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/login', function () {
-    return view('auth.login');
+Route::get('/', function () {
+    return view('pages.blank-page', ['type_menu' => '']);
 });
+// Route::get('/login', function () {
+//     return view('auth.login');
+// });
+// Route::get('/register', function () {
+//     return view('auth.register');
+// });
+// Route::get('/reset', function () {
+//     return view('auth.reset');
+// });
+// Route::get('/forgot', function () {
+//     return view('auth.forgot');
+// });
+// Route::get('/verify', function () {
+//     return view('auth.verify');
+// });
