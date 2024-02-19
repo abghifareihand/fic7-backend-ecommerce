@@ -3,29 +3,35 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\CategoryResource;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth:sanctum');
-        $this->authorizeResource(Category::class, 'category');
-    }
+
+    // public function __construct()
+    // {
+    //     $this->middleware('auth:sanctum')->except(['index', 'show']);
+    //     $this->authorizeResource(Category::class, 'category');
+    // }
     /**
      * Display a listing of the resource.
+     * GET ALL CATEGORY PRODUCT
      */
     public function index()
     {
-        return Category::all();
+
+        return CategoryResource::collection(Category::all());
     }
 
     /**
      * Store a newly created resource in storage.
+     * POST CATEGORY PRODUCT
      */
     public function store(Request $request)
     {
+
         $category = Category::create([
             ...$request->validate([
                 'name' => 'required|string|max:20',
@@ -38,6 +44,7 @@ class CategoryController extends Controller
 
     /**
      * Display the specified resource.
+     * GET CATEGORY PRODUCT BY ID
      */
     public function show(Category $category)
     {
@@ -55,7 +62,7 @@ class CategoryController extends Controller
                 'name' => 'required|string|max:20',
                 'description' => 'required',
             ])
-    );
+        );
 
         return $category;
     }
@@ -66,9 +73,7 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         $category->delete();
-        return response()->json([
-            'success' => true,
-            "message" => "Category deleted successfully"
-        ]);
+
+        return response(status: 204);
     }
 }

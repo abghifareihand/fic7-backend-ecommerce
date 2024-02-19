@@ -45,6 +45,7 @@ class AuthController extends Controller
             'email' =>'required|string|email',
             'password' => 'required',
             'name' =>'required',
+            'role' => 'required',
         ]);
 
         // Memeriksa apakah email sudah ada dalam database
@@ -58,7 +59,7 @@ class AuthController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'role' => 'user',
+            'role' => $request->role,
         ]);
 
         $token = $user->createToken('api-token')->plainTextToken;
@@ -73,6 +74,21 @@ class AuthController extends Controller
         $request->user()->tokens()->delete();
         return response()->json([
           'message' => 'logout successfully ',
+        ]);
+    }
+
+    public function updateFcmToken(Request $request)
+    {
+        $request->validate([
+            'fcm_token' =>'required',
+        ]);
+
+        $user = $request->user();
+        $user->fcm_token = $request->fcm_token;
+        $user->save();
+
+        return response()->json([
+          'message' => 'FCM token updated successfully',
         ]);
     }
 }

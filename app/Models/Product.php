@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -27,4 +28,15 @@ class Product extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function scopeCategoryId(Builder $query, string $categoryId, string $userId) : Builder
+    {
+        return $query->where('category_id', 'LIKE', '%' . $categoryId . '%')
+        ->where('user_id', 'LIKE', '%' . $userId . '%');
+    }
+
+    // public function scopeUserId(Builder $query, string $userId) : Builder
+    // {
+    //     return $query->where('user_id', 'LIKE', '%' . $userId . '%');
+    // }
 }

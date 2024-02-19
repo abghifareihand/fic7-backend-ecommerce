@@ -11,8 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->string('role')->after('email')->nullable();;
+        Schema::create('banners', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->text('banner_url');
+            $table->boolean('is_enable');
+            $table->timestamps();
         });
     }
 
@@ -21,8 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('role');
-        });
+        Schema::dropIfExists('banners');
     }
 };
