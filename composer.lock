@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "da9cc48953ed061067e4c857905ab0fe",
+    "content-hash": "ecf711d8e750b290c85d4d77293e778a",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -2035,16 +2035,16 @@
         },
         {
             "name": "kreait/laravel-firebase",
-            "version": "5.6.0",
+            "version": "5.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kreait/laravel-firebase.git",
-                "reference": "920768705d262ed099c6bdcc99b80cd180dbbede"
+                "reference": "3628ce45ab9211146183610a3e8fc50c5ab5476a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kreait/laravel-firebase/zipball/920768705d262ed099c6bdcc99b80cd180dbbede",
-                "reference": "920768705d262ed099c6bdcc99b80cd180dbbede",
+                "url": "https://api.github.com/repos/kreait/laravel-firebase/zipball/3628ce45ab9211146183610a3e8fc50c5ab5476a",
+                "reference": "3628ce45ab9211146183610a3e8fc50c5ab5476a",
                 "shasum": ""
             },
             "require": {
@@ -2052,7 +2052,7 @@
                 "illuminate/support": "^9.0 || ^10.0",
                 "kreait/firebase-php": "^7.0",
                 "php": "~8.1.0 || ~8.2.0 || ~8.3.0",
-                "symfony/cache": "^6.1.2"
+                "symfony/cache": "^6.1.2 || ^7.0.3"
             },
             "require-dev": {
                 "laravel/pint": "^1.13",
@@ -2097,7 +2097,7 @@
             ],
             "support": {
                 "issues": "https://github.com/kreait/laravel-firebase/issues",
-                "source": "https://github.com/kreait/laravel-firebase/tree/5.6.0"
+                "source": "https://github.com/kreait/laravel-firebase/tree/5.7.0"
             },
             "funding": [
                 {
@@ -2105,7 +2105,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-01-12T23:30:54+00:00"
+            "time": "2024-02-19T18:44:01+00:00"
         },
         {
             "name": "laravel/fortify",

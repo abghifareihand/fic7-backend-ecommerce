@@ -88,7 +88,7 @@ class AuthController extends Controller
         $user->save();
 
         return response()->json([
-          'message' => 'FCM token updated successfully',
+          'message' => 'fcm token updated successfully',
         ]);
     }
 }
