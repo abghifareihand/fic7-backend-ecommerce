@@ -31,6 +31,7 @@ Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanc
 Route::post('image/upload', [UploadController::class,'uploadImage'])->middleware('auth:sanctum');
 Route::post('image/upload-multiple', [UploadController::class,'uploadMultipleImage'])->middleware('auth:sanctum');
 Route::post('orders', [OrderController::class, 'order'])->middleware('auth:sanctum');
+Route::get('orders', [OrderController::class, 'orderById'])->middleware('auth:sanctum');
 Route::post('midtrans/notification/handling', [CallbackController::class, 'callback']);
 
 Route::apiResource('categories', CategoryController::class);
