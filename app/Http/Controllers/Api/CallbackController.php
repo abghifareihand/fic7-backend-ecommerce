@@ -40,7 +40,7 @@ class CallbackController extends Controller
                 Order::where('id', $order->id)->update([
                     'payment_status' => 2,
                 ]);
-                $this->sendNotificationToUser($order->seller_id, 'Pembayaran order Rp.' . number_format($order->total_price ). ' berhasil');
+                $this->sendNotificationToUser($order->seller_id, 'Pembayaran order Rp' . number_format($order->total_price, 0, '', '.') . ' berhasil');
             }
 
             if ($callback->isExpire()) {
