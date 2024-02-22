@@ -23,7 +23,7 @@ class OrderController extends Controller
 
         // Kirim notifikasi ke perangkat android
         $messaging = app('firebase.messaging');
-        $notification = Notification::create('Ada Orderan '.$userName, $message);
+        $notification = Notification::create('Order masuk', $message);
 
         $message = CloudMessage::withTarget('token', $token)->withNotification($notification);
 
@@ -53,7 +53,7 @@ class OrderController extends Controller
         // manggil service midtrans dapatkan payment url
         $midtrans = new CreatePaymentUrlService();
         $paymentUrl = $midtrans->getPaymentUrl($order->load('user', 'orderItems'));
-        $this->sendNotificationToUser($request->seller_id, 'Order ' . $request->total_price . ' masuk, menunggu pembayaran');
+        $this->sendNotificationToUser($request->seller_id, 'Order Rp.' . number_format($request->total_price) . ' masuk, menunggu pembayaran');
         $order->update([
             'payment_url' => $paymentUrl,
         ]);

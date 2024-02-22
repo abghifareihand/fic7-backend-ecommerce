@@ -21,7 +21,7 @@ class CallbackController extends Controller
 
         // Kirim notifikasi ke perangkat android
         $messaging = app('firebase.messaging');
-        $notification = Notification::create('Order Terbayar', $message);
+        $notification = Notification::create('Order telah dibayar', $message);
 
         $message = CloudMessage::withTarget('token', $token)->withNotification($notification);
 
@@ -40,7 +40,7 @@ class CallbackController extends Controller
                 Order::where('id', $order->id)->update([
                     'payment_status' => 2,
                 ]);
-                $this->sendNotificationToUser($order->seller_id, 'Order ' . $order->total_price . ' telah dibayarkan');
+                $this->sendNotificationToUser($order->seller_id, 'Pembayaran order Rp.' . number_format($order->total_price ). ' berhasil');
             }
 
             if ($callback->isExpire()) {
