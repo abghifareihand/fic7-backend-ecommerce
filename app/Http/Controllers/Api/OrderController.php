@@ -53,7 +53,7 @@ class OrderController extends Controller
         // manggil service midtrans dapatkan payment url
         $midtrans = new CreatePaymentUrlService();
         $paymentUrl = $midtrans->getPaymentUrl($order->load('user', 'orderItems'));
-        $this->sendNotificationToUser($request->seller_id, 'Order Rp.' . $request->total_price . ' masuk, menunggu pembayaran');
+        $this->sendNotificationToUser($request->seller_id, 'Order Rp.' . number_format($request->total_price) . ' masuk, menunggu pembayaran');
         $order->update([
             'payment_url' => $paymentUrl,
         ]);
