@@ -78,10 +78,7 @@ class OrderController extends Controller
             fn ($query, $payment_status) => $query->where('payment_status', '=', $payment_status)
         )
             ->get();
-            // Memuat relasi products bersama dengan order
-    $orders = $orderQuery->with('user', 'orderItems', 'orderItems.product')->get();
-
-    // Mengembalikan data dalam format OrderResource
-    return OrderResource::collection($orders);
+        $order->load('orderItems', 'orderItems.product');
+        return OrderResource::collection($orders);
     }
 }
