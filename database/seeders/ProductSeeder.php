@@ -18,7 +18,7 @@ class ProductSeeder extends Seeder
         $users = User::all();
         $categories = Category::all();
 
-        for ($i = 0; $i < 100; $i++) {
+        for ($i = 0; $i < 1; $i++) {
             $user = $users->random();
             $category = $categories->random();
 

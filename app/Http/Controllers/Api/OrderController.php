@@ -51,9 +51,9 @@ class OrderController extends Controller
         }
 
         // manggil service midtrans dapatkan payment url
+        $this->sendNotificationToUser($request->seller_id, 'Order Rp.' . number_format($request->total_price) . ' masuk, menunggu pembayaran');
         $midtrans = new CreatePaymentUrlService();
         $paymentUrl = $midtrans->getPaymentUrl($order->load('user', 'orderItems'));
-        $this->sendNotificationToUser($request->seller_id, 'Order Rp.' . number_format($request->total_price) . ' masuk, menunggu pembayaran');
         $order->update([
             'payment_url' => $paymentUrl,
         ]);
@@ -78,7 +78,7 @@ class OrderController extends Controller
             fn ($query, $payment_status) => $query->where('payment_status', '=', $payment_status)
         )
             ->get();
-        $order->load('orderItems', 'user');
+        // $order->load('orderItems', 'user');
         return new OrderResource($order);
     }
 }

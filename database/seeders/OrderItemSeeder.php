@@ -18,7 +18,7 @@ class OrderItemSeeder extends Seeder
         $order = Order::find(1);
         $products = Product::all();
 
-        for($i = 0; $i < 5; $i++) {
+        for($i = 0; $i < 1; $i++) {
             OrderItem::factory()->create([
                 'order_id' => $order->id,
                 'product_id' => $products->random()->id,
