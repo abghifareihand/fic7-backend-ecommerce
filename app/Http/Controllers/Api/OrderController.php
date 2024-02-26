@@ -63,22 +63,35 @@ class OrderController extends Controller
     }
 
     public function orderById(Request $request)
-    {
-        $user_id = $request->query('user_id');
-        $seller_id = $request->query('seller_id');
-        $payment_status = $request->query('payment_status');
-        $order = Order::when(
-            $user_id,
-            fn ($query, $user_id) => $query->where('user_id', '=', $user_id)
-        )->when(
-            $seller_id,
-            fn ($query, $seller_id) => $query->where('seller_id', '=', $seller_id)
-        )->when(
-            $payment_status,
-            fn ($query, $payment_status) => $query->where('payment_status', '=', $payment_status)
-        )
-            ->get();
-        // $order->load('orderItems', 'user');
-        return new OrderResource($order);
+{
+    $user_id = $request->query('user_id');
+    $seller_id = $request->query('seller_id');
+    $payment_status = $request->query('payment_status');
+
+    $query = Order::when(
+        $user_id,
+        fn ($query, $user_id) => $query->where('user_id', $user_id)
+    )->when(
+        $seller_id,
+        fn ($query, $seller_id) => $query->where('seller_id', $seller_id)
+    )->when(
+        $payment_status,
+        fn ($query, $payment_status) => $query->where('payment_status', $payment_status)
+    )->with('orderItems.product');
+
+    // Cek apakah hanya satu pesanan yang diinginkan atau semua pesanan
+    if ($request->has('single') && $request->single) {
+        $order = $query->first(); // Ambil satu pesanan
+        if ($order) {
+            return new OrderResource($order);
+        } else {
+            return response()->json(['message' => 'Order not found'], 404);
+        }
+    } else {
+        $orders = $query->get(); // Ambil semua pesanan
+        return OrderResource::collection($orders);
     }
+}
+
+
 }
